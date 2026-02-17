@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KuttyTeachers | Art, Nature & Knowledge in Palakkad</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-color: #2E8B57; /* SeaGreen for Nature/Gardening */
+            --secondary-color: #333;   /* Dark Grey for Text */
+            --accent-color: #f4f4f4;   /* Light Grey Background */
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/1600x900/?nature,piano'); /* Placeholder Image */
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            max-width: 600px;
+        }
+
+        /* The 4 Pillars Grid */
+        .container {
+            max-width: 1200px;
+            margin: -50px auto 50px; /* Pulls the grid up into the header slightly */
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-bottom: 5px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Specific Colors for Categories */
+        .card.photo { border-bottom-color: #e91e63; }
+        .card.garden { border-bottom-color: #2E8B57; }
+        .card.piano { border-bottom-color: #3f51b5; }
+        .card.tutor { border-bottom-color: #ff9800; }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card h2 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #222;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1.1rem; }
+            .container { margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>KuttyTeachers</h1>
+        <p>A husband & wife team sharing the beauty of Palakkad through Lens, Soil, Music, and Education.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card photo">
+            <span class="icon">📸</span>
+            <h2>Photography</h2>
+            <p>Capturing the vibrant life and landscapes of Palakkad. Explore our gallery.</p>
+            <a href="photography.html" class="btn">View Gallery</a>
+        </div>
+
+        <div class="card garden">
+            <span class="icon">🌿</span>
+            <h2>Gardening</h2>
+            <p>Organic tips, plant sales, and green living advice from our home garden.</p>
+            <a href="gardening.html" class="btn">Visit Garden</a>
+        </div>
+
+        <div class="card piano">
+            <span class="icon">🎹</span>
+            <h2>Piano</h2>
+            <p>Original BGMs, song covers, and musical works to soothe the soul.</p>
+            <a href="piano.html" class="btn">Listen Now</a>
+        </div>
+
+        <div class="card tutor">
+            <span class="icon">📚</span>
+            <h2>Tutoring</h2>
+            <p>Free tuition classes and educational resources for students in our locality.</p>
+            <a href="tutoring.html" class="btn">Start Learning</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 KuttyTeachers.in | Made with ❤️ in Palakkad, Kerala.</p>
+    </footer>
+
+</body>
+</html>
