@@ -1,227 +1,631 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>കട്ടിടീച്ചേഴ്സ് സംഗീതം | KuttyTeachers Music</title>
+    <meta name="description" content="കട്ടിടീച്ചേഴ്സിൽ നിന്ന് പിയാനോ സംഗീതം, മൂലരചനകൾ, പഠന ശ്രംഖല - പാലക്കാട്">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<title>KuttyTeachers Piano | Music and Originals</title>
+    <style>
+        :root {
+            /* Greenery palette - matching index */
+            --primary-dark-green: #1b4332;
+            --primary-green: #2d6a4f;
+            --forest-green: #40916c;
+            --leaf-green: #52b788;
+            --soft-mint: #95d5b2;
+            --pale-green: #d8f3dc;
+            --off-white: #f8f9f7;
+            --white: #ffffff;
+            --black: #0b1c0e;
+            
+            /* Text colors */
+            --light-text: #2d5a3d;
+            --accent-green: #40916c;
+        }
 
-<meta name="description" content="Piano music, original compositions, and tutorials by KuttyTeachers from Palakkad.">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+        html {
+            scroll-behavior: smooth;
+        }
 
-<style>
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--off-white);
+            color: var(--light-text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
 
-:root{
---bg:#f8fafc;
---card:#ffffff;
---text:#0f172a;
---muted:#64748b;
---accent:#6366f1;
-}
+        /* HEADER - Matching index.html */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: 2px solid var(--pale-green);
+            padding: 18px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(27, 67, 50, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
 
-*{
-box-sizing:border-box;
-}
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                rgba(45, 106, 79, 0.12) 0%,
+                rgba(45, 106, 79, 0.06) 25%,
+                rgba(82, 183, 136, 0.04) 50%,
+                rgba(45, 106, 79, 0.06) 75%,
+                rgba(45, 106, 79, 0.12) 100%);
+            pointer-events: none;
+            z-index: -1;
+            animation: fadeFlow 4s ease-in-out infinite;
+        }
 
-body{
-margin:0;
-font-family:'Inter',sans-serif;
-background:var(--bg);
-color:var(--text);
-}
+        .logo {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            position: relative;
+            z-index: 2;
+        }
 
+        .logo-english {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-dark-green);
+            letter-spacing: 1px;
+        }
 
-/* NAVBAR */
-.navbar{
-background:#0f172a;
-color:white;
-padding:18px 30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+        .logo-malayalam {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--forest-green);
+        }
 
-.navbar a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-}
+        .nav {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
 
-.navbar a:hover{
-color:#38bdf8;
-}
+        .nav-item {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            padding: 8px 14px;
+            text-decoration: none;
+            color: var(--light-text);
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 300ms ease;
+            font-size: 0.95rem;
+            position: relative;
+        }
 
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 14px;
+            right: 14px;
+            height: 2px;
+            background: var(--leaf-green);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 300ms ease;
+        }
 
-/* HERO */
-.hero{
+        .nav-item:hover::after {
+            transform: scaleX(1);
+        }
 
-background:
-linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-url("https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1600&q=80");
+        .nav-item:hover {
+            background: var(--pale-green);
+        }
 
-background-size:cover;
-background-position:center;
+        .nav-item.active {
+            background: var(--primary-green);
+            color: var(--white);
+        }
 
-height:50vh;
+        .nav-item.active::after {
+            display: none;
+        }
 
-color:white;
+        /* HERO SECTION */
+        .hero {
+            margin-top: 80px;
+            padding: 80px 32px;
+            background: linear-gradient(135deg, var(--primary-dark-green) 0%, var(--forest-green) 50%, var(--primary-green) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: drift 8s ease-in-out infinite;
+            z-index: 0;
+        }
 
-text-align:center;
-padding:20px;
+        .hero::after {
+            content: '🎵 🎹 🎶 🎼';
+            position: absolute;
+            top: 50%;
+            right: 60px;
+            font-size: 4rem;
+            opacity: 0.15;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+            letter-spacing: 15px;
+        }
 
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
 
-.hero h1{
-font-size:2.8rem;
-margin-bottom:10px;
-}
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 3.2rem;
+            margin-bottom: 16px;
+            font-weight: 800;
+            opacity: 0;
+            animation: slideInDown 700ms ease-out forwards;
+        }
 
-.hero p{
-max-width:600px;
-color:#e2e8f0;
-}
+        .hero-ml {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            opacity: 0;
+            animation: slideInDown 700ms ease-out 150ms forwards;
+        }
 
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0;
+            animation: slideInDown 700ms ease-out 300ms forwards;
+        }
 
-/* CONTENT */
-.container{
-max-width:900px;
-margin:-60px auto 40px auto;
-padding:20px;
-}
+        /* CONTENT SECTION */
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 32px;
+        }
 
-.card{
-background:var(--card);
-padding:30px;
-border-radius:12px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-margin-bottom:30px;
-}
+        .section-title {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            font-size: 2.2rem;
+            color: var(--primary-dark-green);
+            margin-bottom: 12px;
+            font-weight: 800;
+            text-align: center;
+        }
 
-.status{
-display:inline-block;
-background:var(--accent);
-color:white;
-padding:6px 14px;
-border-radius:20px;
-font-size:0.85rem;
-margin-bottom:15px;
-}
+        .section-subtitle {
+            text-align: center;
+            color: var(--accent-green);
+            font-size: 1.05rem;
+            margin-bottom: 48px;
+            font-weight: 600;
+        }
 
-.card p{
-color:var(--muted);
-line-height:1.6;
-}
+        /* CARDS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 40px;
+        }
 
+        .card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(27, 67, 50, 0.08);
+            transition: all 400ms ease;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 700ms ease-out forwards;
+            border-left: 5px solid var(--pale-green);
+            position: relative;
+        }
 
-/* SAMPLE POST */
-.music-title{
-font-size:1.3rem;
-font-weight:600;
-margin-bottom:8px;
-}
+        .card:nth-child(1) { animation-delay: 100ms; }
+        .card:nth-child(2) { animation-delay: 200ms; }
+        .card:nth-child(3) { animation-delay: 300ms; }
 
-.music-meta{
-font-size:0.9rem;
-color:var(--muted);
-margin-bottom:12px;
-}
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(27, 67, 50, 0.15);
+            border-left-color: var(--forest-green);
+        }
 
+        .card-status {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--leaf-green), var(--forest-green));
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-family: 'Noto Sans Malayalam', sans-serif;
+        }
 
-/* FOOTER */
-.footer{
-text-align:center;
-padding:25px;
-background:#0f172a;
-color:#94a3b8;
-}
+        .card-status.progress {
+            background: linear-gradient(135deg, var(--soft-mint), var(--leaf-green));
+        }
 
+        .card-status.coming {
+            background: linear-gradient(135deg, var(--pale-green), var(--soft-mint));
+            color: var(--primary-dark-green);
+        }
 
-</style>
+        .card h2 {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-dark-green);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
 
+        .card p {
+            color: var(--light-text);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .card-meta {
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        /* MUSIC PLAYER PLACEHOLDER */
+        .player-placeholder {
+            background: linear-gradient(135deg, var(--pale-green) 0%, var(--soft-mint) 100%);
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+            color: var(--primary-dark-green);
+            font-weight: 600;
+            margin-top: 16px;
+            font-family: 'Noto Sans Malayalam', sans-serif;
+        }
+
+        .audio-control {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 20px;
+            background: var(--primary-green);
+            color: var(--white);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 300ms ease;
+        }
+
+        .audio-control:hover {
+            background: var(--forest-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--primary-dark-green);
+            color: var(--white);
+            padding: 60px 32px;
+            margin-top: 40px;
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .footer-col p, .footer-col a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            transition: all 300ms ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes drift {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            33% {
+                transform: translate(30px, -30px);
+            }
+            66% {
+                transform: translate(-20px, 20px);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes fadeFlow {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 14px 16px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .logo-english {
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: 40px 16px;
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-ml {
+                font-size: 1.1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero::after {
+                font-size: 2.5rem;
+                right: 20px;
+                letter-spacing: 8px;
+            }
+
+            .content-container {
+                padding: 40px 16px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* REDUCED MOTION */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
-
-<!-- NAVBAR -->
-<div class="navbar">
-<div><strong>KuttyTeachers</strong></div>
-<div>
-<a href="index.html">Home</a>
-<a href="photography.html">Photography</a>
-<a href="tutoring.html">Tutoring</a>
-<a href="gardening.html">Gardening</a>
-</div>
-</div>
-
+<!-- HEADER -->
+<header class="header">
+    <div class="logo">
+        <div class="logo-english">KuttyTeachers</div>
+        <div class="logo-malayalam">കട്ടിടീച്ചേഴ്സ്</div>
+    </div>
+    <nav class="nav">
+        <a href="index.html" class="nav-item">വീട്</a>
+        <a href="photography.html" class="nav-item">ഫോട്ടോ</a>
+        <a href="tutoring.html" class="nav-item">പഠനം</a>
+        <a href="piano.html" class="nav-item active">സംഗീതം</a>
+        <a href="gardening.html" class="nav-item">തോട്ടം</a>
+    </nav>
+</header>
 
 <!-- HERO -->
-<div class="hero">
-
-<h1>Piano</h1>
-
-<p>
-Original piano music, background scores, and learning journey from our home.
-</p>
-
-</div>
-
+<section class="hero">
+    <div class="hero-content">
+        <h1>സംഗീതം</h1>
+        <div class="hero-ml">പിയാനോ ജാതം</div>
+        <p>മൂലരചനകൾ, ബാക്ക്ഗ്രൗണ്ട് സ്കോർ, പാഠ ശ്രംഖല - നമ്മുടെ വീട്ടിൽ നിന്ന് സംഗീതം</p>
+    </div>
+</section>
 
 <!-- CONTENT -->
-<div class="container">
+<div class="content-container">
+    <h2 class="section-title">ഞങ്ങളുടെ സംഗീത സമൂഹം</h2>
+    <p class="section-subtitle">പിയാനോ കൃതികൾ, കവറുകൾ, ഉപദേശങ്ങൾ</p>
 
+    <div class="cards-grid">
+        <!-- CARD 1 -->
+        <div class="card">
+            <div class="card-status progress">📝 നിർമ്മാണത്തിലുണ്ട്</div>
+            <h2>ഈ വിഭാഗം തയാറാകുന്നു 🎹</h2>
+            <p>ഞങ്ങൾ സംഗീതം സൃഷ്ടിക്കുകയും റെക്കോർഡ് ചെയ്യുകയും സംഗീത സാധനം തയാറാകുകയാണ്. വരണ്ടതിൽ യൂജിനലൻ ബാക്ക്ഗ്രൌണ്ട് സ്കോർ, സ്ഥിരായ ഗാന സിഖരം, വ്യക്തിഗത സംഗീത സൃഷ്ടികൾ കാണാൻ കഴിയും.</p>
+            <div class="card-meta">ഉപകരണം: ഡിജിറ്റൽ പിയാനോ • വീട്ടിൽ റെക്കോർഡ് ചെയ്ത</div>
+        </div>
 
-<!-- UNDER DEVELOPMENT CARD -->
-<div class="card">
+        <!-- CARD 2 -->
+        <div class="card">
+            <div class="card-status coming">⏳ വരുന്നതായി</div>
+            <h2>ആദ്യ മൂലരചന</h2>
+            <p>ഇതിൽ യൂജിനലൻ പിയാനോ റെക്കോർഡിംഗുകൾ ഉണ്ടാകും, ഓരോ കൃതിയുടെ പിന്നിലുള്ള കഥ പറയാൻ. അഡിയോ പ്ലേയർ, വിഡിയോ, സംഗീത നിയിഷ്ടനിരങ്ങൾ കളെക്ഷൻ വർദ്ധിക്കുമ്പോൾ ചേർക്കും.</p>
+            <div class="card-meta">ഭാവിയിൽ: ജൂൺ 2026</div>
+            <div class="player-placeholder">
+                🎵 ഓഡിയോ പ്ലേയർ വരുന്നതായി
+            </div>
+        </div>
 
-<div class="status">In Progress</div>
+        <!-- CARD 3 -->
+        <div class="card">
+            <div class="card-status coming">⏳ വരുന്നതായി</div>
+            <h2>സംഗീത പരിശീലനം</h2>
+            <p>പിയാനോ പരിശീലനം, സംഗീത സിദ്ധാന്തം, ലളിതമായ ട്യൂട്ടോറിയൽ വീഡിയോ കാണിക്കുന്നതായി കാത്തിരിക്കുന്നു. പ്രാരംഭികർ നുഴുറൻ പയാനോ ശീഖരങ്ങൾ പരിചയിപ്പിക്കാൻ സ്വാഗതം നൽകുന്നു.</p>
+            <div class="card-meta">ഉപകരണം: സ്കീൻ റെകോർഡിംഗ + വിഡിയോ</div>
+            <div class="player-placeholder">
+                🎬 ടിউട്ടോറിയൽ വരുന്നതായി
+            </div>
+        </div>
+    </div>
 
-<h2>This section is being prepared 🎹</h2>
-
-<p>
-We are currently composing, recording, and preparing piano content. Soon, you will find original background scores, simple song tutorials, and personal music works here.
-</p>
-
+    <!-- SECTION INFO -->
+    <div style="background: linear-gradient(135deg, var(--pale-green) 0%, var(--soft-mint) 100%); padding: 40px 32px; border-radius: 10px; margin-top: 40px; text-align: center;">
+        <h3 style="font-family: 'Noto Sans Malayalam', sans-serif; font-size: 1.4rem; color: var(--primary-dark-green); margin-bottom: 12px; font-weight: 700;">ഈ സാത്തരത്തിലെ വഷ്യപ്പാടി</h3>
+        <p style="color: var(--light-text); font-size: 1rem; line-height: 1.8; max-width: 700px; margin: 0 auto;">സംഗീതം നമ്മുടെ വീടിന്റെ കേന്ദ്ര ഉപകരണം. ഞങ്ങൾ പിയാനോ പരിചയിപ്പിക്കുകയും സംഗീതം സൃഷ്ടിക്കുകയാണ്. നിങ്ങളെ നമ്മുടെ സംഗീത സാത്തരത്ത് കൂടിച്ചേർന്ന് പരിചയിപ്പിക്കാൻ ഞങ്ങൾ കാത്തിരിക്കുന്നു!</p>
+    </div>
 </div>
-
-
-<!-- SAMPLE FUTURE POST -->
-<div class="card">
-
-<div class="music-title">Sample Entry: First Original Composition</div>
-
-<div class="music-meta">June 2026 • Digital Piano • Home Recording</div>
-
-<p>
-This section will contain original piano recordings along with the story behind each piece. Audio players and videos will be added here as the collection grows.
-</p>
-
-<!-- Example future audio player -->
-<!--
-<audio controls>
-  <source src="audio/your-music.mp3" type="audio/mpeg">
-</audio>
--->
-
-</div>
-
-
-</div>
-
 
 <!-- FOOTER -->
-<div class="footer">
-
-© 2026 KuttyTeachers.in — Piano Journey in Progress
-
-</div>
-
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>കട്ടിടീച്ചേഴ്സ് സംഗീതം</h4>
+            <p>പാലക്കാടിൽ നിന്നുള്ള പിയാനോ സംഗീത ശ്രംഖല. മൂലരചനകൾ, കവറുകൾ, പരിശീലനം.</p>
+        </div>
+        <div class="footer-col">
+            <h4>സേവനങ്ങൾ</h4>
+            <p><a href="index.html">വീട്</a></p>
+            <p><a href="photography.html">ഫോട്ടോഗ്രാഫി</a></p>
+            <p><a href="tutoring.html">പരിശീലനം</a></p>
+            <p><a href="piano.html">സംഗീതം</a></p>
+            <p><a href="gardening.html">തോട്ടം</a></p>
+        </div>
+        <div class="footer-col">
+            <h4>സമ്പർക്കം</h4>
+            <p>ഇമെയിൽ: contact@kuttyteachers.in</p>
+            <p>സ്ഥലം: പാലക്കാട്, കേരളം 🌿</p>
+        </div>
+        <div class="footer-col">
+            <h4>കൂടുതലറിയാൻ</h4>
+            <p><a href="#">ഞങ്ങളെക്കുറിച്ച്</a></p>
+            <p><a href="#">സംഗീതം കേൾക്കാൻ സ്വാഗതം</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 KuttyTeachers.in — പാലക്കാട്ടിൽ 🌱 നിർമ്മിതം</p>
+    </div>
+</footer>
 
 </body>
 </html>
