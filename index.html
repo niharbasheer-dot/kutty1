@@ -1,175 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KuttyTeachers | Art, Nature & Knowledge in Palakkad</title>
+
+    <title>KuttyTeachers | Photography, Tutoring, Piano & Gardening</title>
+
+    <meta name="description" content="KuttyTeachers is a teacher couple initiative from Palakkad sharing photography, free tutoring, piano music, and gardening knowledge.">
+
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
     <style>
-        /* --- CSS STYLES --- */
+
         :root {
-            --primary-color: #2E8B57; /* SeaGreen for Nature/Gardening */
-            --secondary-color: #333;   /* Dark Grey for Text */
-            --accent-color: #f4f4f4;   /* Light Grey Background */
+
+            --primary: #2E8B57;
+            --dark: #0f172a;
+            --light: #f1f5f9;
             --white: #ffffff;
+            --gray: #64748b;
+
+            --photo: #e91e63;
+            --garden: #22c55e;
+            --piano: #6366f1;
+            --tutor: #f59e0b;
+
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: var(--accent-color);
-            color: var(--secondary-color);
-            line-height: 1.6;
         }
 
-        /* Hero Section */
-        header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/1600x900/?nature,piano'); /* Placeholder Image */
+
+        body {
+
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(8px);
+
+        }
+
+        .nav-logo {
+
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+
+        }
+
+        .nav-links a {
+
+            color: white;
+            margin-left: 25px;
+            text-decoration: none;
+            font-weight: 500;
+
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero-header {
+
+            height: 100vh;
+
+            background:
+            linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+            url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+
             background-size: cover;
             background-position: center;
-            height: 60vh;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
             text-align: center;
-            color: var(--white);
-            padding: 20px;
+
+            color: white;
+
         }
 
-        header h1 {
+
+        .hero-title {
+
             font-size: 3.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 20px;
+
         }
 
-        header p {
-            font-size: 1.5rem;
-            max-width: 600px;
+
+        .hero-subtitle {
+
+            max-width: 700px;
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            margin-bottom: 30px;
+
         }
 
-        /* The 4 Pillars Grid */
+
+        .hero-buttons a {
+
+            text-decoration: none;
+            padding: 14px 28px;
+            margin: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+
+        }
+
+
+        .primary {
+            background: var(--primary);
+            color: white;
+        }
+
+
+        .secondary {
+            border: 2px solid white;
+            color: white;
+        }
+
+
+        .primary:hover {
+            background: #15803d;
+        }
+
+
+        .secondary:hover {
+            background: white;
+            color: black;
+        }
+
+
+        .scroll-indicator {
+
+            position: absolute;
+            bottom: 20px;
+            color: white;
+            opacity: 0.8;
+
+        }
+
+
+        /* ================= CARDS ================= */
+
         .container {
-            max-width: 1200px;
-            margin: -50px auto 50px; /* Pulls the grid up into the header slightly */
-            padding: 0 20px;
+
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 20px;
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 25px;
+
         }
+
 
         .card {
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+            background: white;
             padding: 30px;
+            border-radius: 12px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+
+            transition: 0.3s;
+
             border-bottom: 5px solid transparent;
+
         }
+
 
         .card:hover {
+
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
         }
 
-        /* Specific Colors for Categories */
-        .card.photo { border-bottom-color: #e91e63; }
-        .card.garden { border-bottom-color: #2E8B57; }
-        .card.piano { border-bottom-color: #3f51b5; }
-        .card.tutor { border-bottom-color: #ff9800; }
+
+        .photo { border-color: var(--photo); }
+        .garden { border-color: var(--garden); }
+        .piano { border-color: var(--piano); }
+        .tutor { border-color: var(--tutor); }
+
 
         .icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: block;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
-        .card h2 {
-            margin: 10px 0;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 20px;
-        }
 
         .btn {
+
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
+            margin-top: 15px;
+            padding: 10px 18px;
+
+            background: var(--dark);
+            color: white;
+
+            border-radius: 6px;
+
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+
         }
 
-        .btn:hover {
-            background-color: #555;
+
+        /* ================= BOTTOM SECTION ================= */
+
+        .bottom-section {
+
+            background: var(--dark);
+            color: white;
+
+            padding: 60px 20px;
+
         }
 
-        /* Footer */
-        footer {
+
+        .bottom-container {
+
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+            gap: 30px;
+
+        }
+
+
+        .bottom-links {
+            list-style: none;
+        }
+
+
+        .bottom-links a {
+
+            color: #cbd5e1;
+            text-decoration: none;
+
+        }
+
+
+        .bottom-links a:hover {
+            color: white;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        .main-footer {
+
+            background: black;
+            color: #94a3b8;
+
             text-align: center;
-            padding: 40px;
-            background-color: #222;
-            color: #aaa;
-            font-size: 0.9rem;
+            padding: 25px;
+
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
-            header p { font-size: 1.1rem; }
-            .container { margin-top: 20px; }
+
+        @media(max-width:768px){
+
+            .hero-title{
+                font-size:2.2rem;
+            }
+
         }
+
+
     </style>
+
 </head>
+
 <body>
 
-    <header>
-        <h1>KuttyTeachers</h1>
-        <p>A husband & wife team sharing the beauty of Palakkad through Lens, Soil, Music, and Education.</p>
-    </header>
 
-    <div class="container">
-        
-        <div class="card photo">
-            <span class="icon">📸</span>
-            <h2>Photography</h2>
-            <p>Capturing the vibrant life and landscapes of Palakkad. Explore our gallery.</p>
-            <a href="photography.html" class="btn">View Gallery</a>
-        </div>
+<!-- HEADER -->
+<header class="hero-header">
 
-        <div class="card garden">
-            <span class="icon">🌿</span>
-            <h2>Gardening</h2>
-            <p>Organic tips, plant sales, and green living advice from our home garden.</p>
-            <a href="gardening.html" class="btn">Visit Garden</a>
-        </div>
+<nav class="navbar">
 
-        <div class="card piano">
-            <span class="icon">🎹</span>
-            <h2>Piano</h2>
-            <p>Original BGMs, song covers, and musical works to soothe the soul.</p>
-            <a href="piano.html" class="btn">Listen Now</a>
-        </div>
+<div class="nav-logo">KuttyTeachers</div>
 
-        <div class="card tutor">
-            <span class="icon">📚</span>
-            <h2>Tutoring</h2>
-            <p>Free tuition classes and educational resources for students in our locality.</p>
-            <a href="tutoring.html" class="btn">Start Learning</a>
-        </div>
+<div class="nav-links">
+<a href="photography.html">Photography</a>
+<a href="tutoring.html">Tutoring</a>
+<a href="piano.html">Piano</a>
+<a href="gardening.html">Gardening</a>
+</div>
 
-    </div>
+</nav>
 
-    <footer>
-        <p>&copy; 2026 KuttyTeachers.in | Made with ❤️ in Palakkad, Kerala.</p>
-    </footer>
+
+<h1 class="hero-title">
+Stories Through Lens, Learning Through Heart
+</h1>
+
+<p class="hero-subtitle">
+A teacher couple from Palakkad sharing photography, free tutoring, music, and gardening to inspire community learning.
+</p>
+
+
+<div class="hero-buttons">
+
+<a href="photography.html" class="primary">Explore Photography</a>
+
+<a href="tutoring.html" class="secondary">Free Tutoring</a>
+
+</div>
+
+
+<div class="scroll-indicator">
+Scroll to explore ↓
+</div>
+
+</header>
+
+
+<!-- MAIN CARDS -->
+
+<section class="container">
+
+<div class="card photo">
+<div class="icon">📸</div>
+<h2>Photography</h2>
+<p>Local stories and landscapes captured from Palakkad.</p>
+<a href="photography.html" class="btn">View Gallery</a>
+</div>
+
+
+<div class="card garden">
+<div class="icon">🌿</div>
+<h2>Gardening</h2>
+<p>Plant care tips and our home garden journey.</p>
+<a href="gardening.html" class="btn">Visit Garden</a>
+</div>
+
+
+<div class="card piano">
+<div class="icon">🎹</div>
+<h2>Piano</h2>
+<p>Original music, covers, and piano tutorials.</p>
+<a href="piano.html" class="btn">Explore Music</a>
+</div>
+
+
+<div class="card tutor">
+<div class="icon">📚</div>
+<h2>Tutoring</h2>
+<p>Free tuition classes and student support.</p>
+<a href="tutoring.html" class="btn">Start Learning</a>
+</div>
+
+
+</section>
+
+
+<!-- BOTTOM SECTION -->
+
+<section class="bottom-section">
+
+<div class="bottom-container">
+
+<div>
+<h3>About KuttyTeachers</h3>
+<p>We are a teacher couple sharing knowledge, creativity, and community learning.</p>
+</div>
+
+<div>
+<h3>Mission</h3>
+<p>Make education accessible and inspire creativity.</p>
+</div>
+
+<div>
+<h3>Location</h3>
+<p>Palakkad, Kerala, India</p>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>contact@kuttyteachers.in</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="main-footer">
+
+© 2026 KuttyTeachers.in — Made with ❤️ in Palakkad
+
+</footer>
+
 
 </body>
 </html>
