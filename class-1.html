@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ക്ലാസ് 1 | KuttyTeachers</title>
+    <meta name="description" content="ഒന്നാം ക്ലാസ് — SCERT, NCERT, ICSE, Finland, Japan പാഠ്യക്രമങ്ങൾ. വിഷയങ്ങൾ, ഗെയിംസ്, അദ്ധ്യാപക നിർദ്ദേശങ്ങൾ, രക്ഷകർ tips.">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Shared: hamburger + mobile nav -->
+    <link rel="stylesheet" href="kutty-extras.css">
+
+    <!-- Class hub styles -->
+    <link rel="stylesheet" href="class.css">
+</head>
+<body>
+
+    <!-- Mobile nav overlay -->
+    <div id="kt-overlay"></div>
+
+    <!-- Mobile nav drawer -->
+    <nav id="kt-mobile-nav">
+        <a href="index.html">🏠 വീട്</a>
+        <a href="photography.html">📸 ഫോട്ടോ</a>
+        <a href="tutoring.html">📚 പഠനം</a>
+        <a href="piano.html">🎹 സംഗീതം</a>
+        <a href="gardening.html">🌿 തോട്ടം</a>
+        <a href="about.html" class="kt-cta">അറിയുക</a>
+    </nav>
+
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-english">KuttyTeachers</div>
+            <div class="logo-malayalam">കട്ടിടീച്ചേഴ്സ്</div>
+        </a>
+        <nav class="nav">
+            <a href="index.html"       class="nav-item">വീട്</a>
+            <a href="photography.html" class="nav-item">ഫോട്ടോ</a>
+            <a href="tutoring.html"    class="nav-item active">പഠനം</a>
+            <a href="piano.html"       class="nav-item">സംഗീതം</a>
+            <a href="gardening.html"   class="nav-item">തോട്ടം</a>
+            <a href="about.html"       class="nav-item">അറിയുക</a>
+        </nav>
+        <button id="kt-hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+
+    <!-- HERO + TABS BAR — built by class.js -->
+    <section class="class-hero" id="class-hero">
+        <!-- Loading placeholder -->
+        <div class="page-loading" style="padding: 60px 32px;">
+            <div class="page-loading-icon">📚</div>
+            <p>ലോഡ് ചെയ്യുന്നു...</p>
+        </div>
+    </section>
+
+
+    <!-- TAB PANELS — built by class.js -->
+    <main class="class-body" id="class-body"></main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>കട്ടിടീച്ചേഴ്സ്</h4>
+                <p>പാലക്കാടിലെ വിദ്യാർത്ഥികൾക്കായി സൌജന്യ പഠന വിഭവങ്ങൾ.</p>
+            </div>
+            <div class="footer-col">
+                <h4>ക്ലാസുകൾ</h4>
+                <p><a href="class-1.html">ഒന്നാം ക്ലാസ്</a></p>
+                <p><a href="class-2.html">രണ്ടാം ക്ലാസ്</a></p>
+                <p><a href="class-3.html">മൂന്നാം ക്ലാസ്</a></p>
+                <p><a href="class-4.html">നാലാം ക്ലാസ്</a></p>
+                <p><a href="class-5.html">അഞ്ചാം ക്ലാസ്</a></p>
+                <p><a href="class-6.html">ആറാം ക്ലാസ്</a></p>
+                <p><a href="class-7.html">ഏഴാം ക്ലാസ്</a></p>
+                <p><a href="class-8.html">എട്ടാം ക്ലാസ്</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>സേവനങ്ങൾ</h4>
+                <p><a href="index.html">വീട്</a></p>
+                <p><a href="photography.html">ഫോട്ടോഗ്രാഫി</a></p>
+                <p><a href="piano.html">സംഗീതം</a></p>
+                <p><a href="gardening.html">തോട്ടം</a></p>
+                <p><a href="about.html">അറിയുക</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>സമ്പർക്കം</h4>
+                <p>contact@kuttyteachers.in</p>
+                <p>പാലക്കാട്, കേരളം 🌿</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 KuttyTeachers.in — പാലക്കാട്ടിൽ 🌱 നിർമ്മിതം</p>
+        </div>
+    </footer>
+
+
+    <!-- Hamburger logic -->
+    <script src="kutty-extras.js" defer></script>
+
+    <!-- ⚠️ THIS IS THE ONLY LINE THAT CHANGES BETWEEN class-1.html → class-8.html -->
+    <script>const CLASS_DATA_FILE = 'class-1.json';</script>
+
+    <!-- Class hub engine — shared across all 8 pages -->
+    <script src="class.js" defer></script>
+
+</body>
+</html>
