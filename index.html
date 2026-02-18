@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ml">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,7 @@
 
     <style>
         :root {
+            /* Greenery palette - natural & calm */
             --primary-dark-green: #1b4332;
             --primary-green: #2d6a4f;
             --forest-green: #40916c;
@@ -19,8 +20,12 @@
             --off-white: #f8f9f7;
             --white: #ffffff;
             --black: #0b1c0e;
+            
+            /* Text colors */
             --light-text: #2d5a3d;
             --accent-green: #40916c;
+            
+            /* Functional colors */
             --success: #52b788;
             --info: #40916c;
         }
@@ -43,80 +48,7 @@
             line-height: 1.6;
         }
 
-        /* ── LOADING SCREEN ── */
-        #loader {
-            position: fixed;
-            inset: 0;
-            background: var(--primary-dark-green);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        #loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--white);
-            letter-spacing: 2px;
-            margin-bottom: 6px;
-            animation: loaderPulse 1.5s ease-in-out infinite;
-        }
-
-        .loader-logo-ml {
-            font-family: 'Noto Sans Malayalam', sans-serif;
-            font-size: 1rem;
-            color: var(--soft-mint);
-            margin-bottom: 36px;
-        }
-
-        .loader-bar-track {
-            width: 180px;
-            height: 3px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 99px;
-            overflow: hidden;
-        }
-
-        .loader-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: var(--leaf-green);
-            border-radius: 99px;
-            animation: loadFill 1.8s ease-out forwards;
-        }
-
-        .loader-leaf {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-            animation: loaderSpin 2s ease-in-out infinite;
-        }
-
-        @keyframes loadFill {
-            0%   { width: 0%; }
-            60%  { width: 80%; }
-            100% { width: 100%; }
-        }
-
-        @keyframes loaderPulse {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0.7; }
-        }
-
-        @keyframes loaderSpin {
-            0%, 100% { transform: rotate(-10deg) scale(1); }
-            50%       { transform: rotate(10deg) scale(1.15); }
-        }
-
-        /* ── HEADER ── */
+        /* HEADER - Minimalist top bar */
         .header {
             position: fixed;
             top: 0;
@@ -130,6 +62,7 @@
             align-items: center;
             z-index: 100;
             box-shadow: 0 2px 8px rgba(27, 67, 50, 0.08);
+            position: relative;
             overflow: hidden;
         }
 
@@ -227,112 +160,7 @@
             box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
         }
 
-        /* ── HAMBURGER BUTTON ── */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            width: 40px;
-            height: 40px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 200;
-            position: relative;
-            padding: 4px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2.5px;
-            background: var(--primary-dark-green);
-            border-radius: 99px;
-            transition: all 300ms ease;
-            transform-origin: center;
-        }
-
-        /* Animate to X when open */
-        .hamburger.open span:nth-child(1) {
-            transform: translateY(7.5px) rotate(45deg);
-        }
-        .hamburger.open span:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        .hamburger.open span:nth-child(3) {
-            transform: translateY(-7.5px) rotate(-45deg);
-        }
-
-        /* ── MOBILE NAV DRAWER ── */
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 260px;
-            height: 100vh;
-            background: var(--white);
-            box-shadow: -4px 0 20px rgba(27, 67, 50, 0.15);
-            z-index: 150;
-            padding: 90px 24px 40px;
-            flex-direction: column;
-            gap: 8px;
-            transform: translateX(100%);
-            transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .mobile-nav.open {
-            transform: translateX(0);
-        }
-
-        .mobile-nav-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(11, 28, 14, 0.4);
-            z-index: 140;
-            opacity: 0;
-            transition: opacity 350ms ease;
-        }
-
-        .mobile-nav-overlay.open {
-            opacity: 1;
-        }
-
-        .mobile-nav a {
-            font-family: 'Noto Sans Malayalam', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--light-text);
-            text-decoration: none;
-            padding: 12px 16px;
-            border-radius: 8px;
-            transition: all 250ms ease;
-            display: block;
-            border-left: 3px solid transparent;
-        }
-
-        .mobile-nav a:hover {
-            background: var(--pale-green);
-            border-left-color: var(--forest-green);
-            color: var(--primary-dark-green);
-        }
-
-        .mobile-nav a.cta-btn {
-            background: var(--primary-green);
-            color: var(--white);
-            margin-top: 8px;
-            border-left-color: transparent;
-        }
-
-        .mobile-nav a.cta-btn:hover {
-            background: var(--forest-green);
-        }
-
-        /* ── HERO SECTION ── */
+        /* HERO SECTION - New approach */
         .hero {
             margin-top: 80px;
             padding: 80px 32px;
@@ -507,9 +335,17 @@
             animation: slideInRight 700ms ease-out forwards;
         }
 
-        .feature-box:nth-child(1) { animation-delay: 200ms; }
-        .feature-box:nth-child(2) { animation-delay: 350ms; }
-        .feature-box:nth-child(3) { animation-delay: 500ms; }
+        .feature-box:nth-child(1) {
+            animation-delay: 200ms;
+        }
+
+        .feature-box:nth-child(2) {
+            animation-delay: 350ms;
+        }
+
+        .feature-box:nth-child(3) {
+            animation-delay: 500ms;
+        }
 
         .feature-box-num {
             font-family: 'Syne', sans-serif;
@@ -533,6 +369,7 @@
             color: var(--light-text);
         }
 
+        /* SECTION - Content blocks */
         .sections-container {
             max-width: 1300px;
             margin: 0 auto;
@@ -568,6 +405,7 @@
             margin: 0 auto;
         }
 
+        /* GRID SECTIONS */
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -637,6 +475,7 @@
             color: var(--white);
         }
 
+        /* TWO COLUMN SECTION */
         .two-column {
             background: var(--white);
             padding: 60px 32px;
@@ -688,6 +527,7 @@
             animation: float 4s ease-in-out infinite;
         }
 
+
         .footer {
             background: var(--primary-dark-green);
             color: var(--white);
@@ -732,44 +572,89 @@
             color: rgba(255,255,255,0.7);
         }
 
-        /* ── ANIMATIONS ── */
+        /* ANIMATIONS */
         @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-40px); }
-            to   { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(40px); }
-            to   { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         @keyframes drift {
-            0%, 100% { transform: translate(0, 0); }
-            33%       { transform: translate(30px, -30px); }
-            66%       { transform: translate(-20px, 20px); }
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            33% {
+                transform: translate(30px, -30px);
+            }
+            66% {
+                transform: translate(-20px, 20px);
+            }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50%       { transform: translateY(-10px); }
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes slideBackground {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100px 0;
+            }
         }
 
         @keyframes fadeFlow {
-            0%, 100% { opacity: 0.8; }
-            50%       { opacity: 1; }
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes shimmer {
-            0%, 100% { opacity: 0.4; }
-            50%       { opacity: 0.8; }
+            0%, 100% {
+                opacity: 0.4;
+            }
+            50% {
+                opacity: 0.8;
+            }
         }
 
-        /* ── RESPONSIVE ── */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -795,22 +680,8 @@
                 padding: 14px 16px;
             }
 
-            /* Hide desktop nav, show hamburger */
             .nav {
                 display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            /* Show mobile nav drawer */
-            .mobile-nav {
-                display: flex;
-            }
-
-            .mobile-nav-overlay {
-                display: block;
             }
 
             .logo-english {
@@ -852,36 +723,17 @@
             }
         }
 
+        /* REDUCED MOTION */
         @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; }
+            * {
+                animation: none !important;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- ── LOADER ── -->
-<div id="loader">
-    <div class="loader-leaf">🌿</div>
-    <div class="loader-logo">KuttyTeachers</div>
-    <div class="loader-logo-ml">കട്ടിടീച്ചേഴ്സ്</div>
-    <div class="loader-bar-track">
-        <div class="loader-bar-fill"></div>
-    </div>
-</div>
-
-<!-- ── MOBILE NAV OVERLAY ── -->
-<div class="mobile-nav-overlay" id="mobileOverlay"></div>
-
-<!-- ── MOBILE NAV DRAWER ── -->
-<nav class="mobile-nav" id="mobileNav">
-    <a href="photography.html">📸 ഫോട്ടോ</a>
-    <a href="tutoring.html">📚 പഠനം</a>
-    <a href="piano.html">🎹 സംഗീതം</a>
-    <a href="gardening.html">🌿 തോട്ടം</a>
-    <a href="about.html" class="cta-btn">അറിയുക</a>
-</nav>
-
-<!-- ── HEADER ── -->
+<!-- HEADER -->
 <header class="header">
     <div class="logo">
         <div class="logo-english">KuttyTeachers</div>
@@ -894,12 +746,6 @@
         <a href="gardening.html" class="nav-item">തോട്ടം</a>
         <a href="about.html" class="nav-item cta-btn">അറിയുക</a>
     </nav>
-    <!-- Hamburger - only visible on mobile -->
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
 </header>
 
 <!-- HERO -->
@@ -1000,6 +846,7 @@
     </div>
 </div>
 
+
 <!-- FOOTER -->
 <footer class="footer">
     <div class="footer-container">
@@ -1032,38 +879,7 @@
 
 <!-- JAVASCRIPT -->
 <script>
-    // ── LOADER ──
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.getElementById('loader').classList.add('hidden');
-        }, 2000);
-    });
-
-    // ── HAMBURGER MENU ──
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileOverlay = document.getElementById('mobileOverlay');
-
-    function toggleMenu(open) {
-        hamburger.classList.toggle('open', open);
-        mobileNav.classList.toggle('open', open);
-        mobileOverlay.classList.toggle('open', open);
-        document.body.style.overflow = open ? 'hidden' : '';
-    }
-
-    hamburger.addEventListener('click', () => {
-        const isOpen = mobileNav.classList.contains('open');
-        toggleMenu(!isOpen);
-    });
-
-    mobileOverlay.addEventListener('click', () => toggleMenu(false));
-
-    // Close menu when a nav link is clicked
-    mobileNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => toggleMenu(false));
-    });
-
-    // ── REVEAL CARDS ON SCROLL ──
+    // Reveal cards on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1075,18 +891,22 @@
 
     document.querySelectorAll('.card-item.reveal').forEach(el => observer.observe(el));
 
-    // ── SMOOTH SCROLL ──
+    // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
     });
 
-    // ── REDUCED MOTION ──
+    // Reduced motion support
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.querySelectorAll('*').forEach(el => el.style.animation = 'none');
+        document.querySelectorAll('*').forEach(el => {
+            el.style.animation = 'none';
+        });
     }
 </script>
 
