@@ -1,0 +1,1095 @@
+/* ============================================================
+   class.css
+   Shared styles for all class hub pages (class-1.html → class-8.html)
+   Works with class.js and class-X.json
+   Matches the KuttyTeachers green palette.
+   ============================================================ */
+
+/* ── CSS VARIABLES ─────────────────────────────────────────── */
+:root {
+    --primary-dark-green: #1b4332;
+    --primary-green:      #2d6a4f;
+    --forest-green:       #40916c;
+    --leaf-green:         #52b788;
+    --soft-mint:          #95d5b2;
+    --pale-green:         #d8f3dc;
+    --off-white:          #f8f9f7;
+    --white:              #ffffff;
+    --black:              #0b1c0e;
+    --light-text:         #2d5a3d;
+
+    --shadow-sm:  0 2px 8px  rgba(27,67,50,0.08);
+    --shadow-md:  0 6px 20px rgba(27,67,50,0.12);
+    --shadow-lg:  0 16px 40px rgba(27,67,50,0.18);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --transition: 300ms ease;
+}
+
+/* ── RESET & BASE ───────────────────────────────────────────── */
+*, *::before, *::after {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--off-white);
+    color: var(--light-text);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+}
+
+/* ── HEADER ─────────────────────────────────────────────────── */
+.header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--pale-green);
+    padding: 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+        rgba(45,106,79,0.12) 0%,
+        rgba(45,106,79,0.06) 25%,
+        rgba(82,183,136,0.04) 50%,
+        rgba(45,106,79,0.06) 75%,
+        rgba(45,106,79,0.12) 100%);
+    pointer-events: none;
+    z-index: -1;
+    animation: fadeFlow 4s ease-in-out infinite;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-decoration: none;
+    z-index: 2;
+}
+
+.logo-english {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-dark-green);
+    letter-spacing: 1px;
+}
+
+.logo-malayalam {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--forest-green);
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    z-index: 2;
+}
+
+.nav-item {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: var(--light-text);
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition);
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 2px; left: 14px; right: 14px;
+    height: 2px;
+    background: var(--leaf-green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+}
+
+.nav-item:hover::after  { transform: scaleX(1); }
+.nav-item:hover         { background: var(--pale-green); }
+.nav-item.active        { background: var(--primary-green); color: var(--white); }
+.nav-item.active::after { display: none; }
+
+/* ── PAGE HERO ──────────────────────────────────────────────── */
+.class-hero {
+    margin-top: 80px;
+    background: linear-gradient(135deg,
+        var(--primary-dark-green) 0%,
+        var(--primary-green) 60%,
+        var(--forest-green) 100%);
+    padding: 56px 32px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.class-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%; left: -10%;
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: drift 10s ease-in-out infinite;
+}
+
+.class-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: -5%;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(82,183,136,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: drift 13s ease-in-out infinite reverse;
+}
+
+.class-hero-top {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.class-hero-left {
+    flex: 1;
+    min-width: 260px;
+}
+
+.class-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--soft-mint);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    opacity: 0.85;
+    transition: opacity var(--transition);
+}
+
+.class-back-link:hover { opacity: 1; }
+
+.class-hero-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.12);
+    line-height: 1;
+    position: absolute;
+    top: 0; right: 32px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.class-hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 6px;
+    opacity: 0;
+    animation: slideDown 600ms ease-out forwards;
+}
+
+.class-hero-title-ml {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--soft-mint);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: slideDown 600ms ease-out 100ms forwards;
+}
+
+.class-hero-age {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+    opacity: 0;
+    animation: slideDown 600ms ease-out 200ms forwards;
+}
+
+/* Class nav — prev/next switcher */
+.class-switcher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 2;
+    margin-top: 8px;
+}
+
+.class-switch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 99px;
+    color: var(--white);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--transition);
+    font-family: 'Noto Sans Malayalam', sans-serif;
+}
+
+.class-switch-btn:hover {
+    background: rgba(255,255,255,0.22);
+}
+
+.class-switch-btn.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* ── MAIN TABS ───────────────────────────────────────────────── */
+.class-tabs-bar {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 32px auto 0;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 0;
+}
+
+.class-tabs-bar::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 18px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition);
+    flex-shrink: 0;
+}
+
+.tab-btn:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.tab-btn.active {
+    color: var(--white);
+    border-bottom-color: var(--leaf-green);
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+/* ── TAB PANELS ─────────────────────────────────────────────── */
+.class-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+    animation: fadeInUp 400ms ease-out forwards;
+}
+
+/* ── PANEL HEADER ────────────────────────────────────────────── */
+.panel-header {
+    margin-bottom: 32px;
+}
+
+.panel-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest-green);
+    margin-bottom: 6px;
+}
+
+.panel-title {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--primary-dark-green);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.panel-desc {
+    font-size: 0.97rem;
+    color: var(--light-text);
+    line-height: 1.8;
+    max-width: 700px;
+}
+
+/* ── SUBJECTS GRID ───────────────────────────────────────────── */
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* ── SUBJECT CARD ────────────────────────────────────────────── */
+.subject-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--pale-green);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition);
+}
+
+.subject-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Subject card header — always visible, click to expand */
+.subject-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 22px;
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--transition);
+}
+
+.subject-card-header:hover {
+    background: var(--off-white);
+}
+
+.subject-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--pale-green);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subject-name-wrap {
+    flex: 1;
+    min-width: 0;
+}
+
+.subject-name-ml {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary-dark-green);
+}
+
+.subject-name-en {
+    font-size: 0.78rem;
+    color: var(--forest-green);
+    font-weight: 500;
+    margin-top: 1px;
+}
+
+.subject-chevron {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--pale-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background var(--transition);
+}
+
+.subject-chevron svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--forest-green);
+    transition: transform var(--transition);
+}
+
+.subject-card.open .subject-chevron svg {
+    transform: rotate(180deg);
+}
+
+.subject-card-header:hover .subject-chevron {
+    background: var(--soft-mint);
+}
+
+/* Subject card body — expands on click */
+.subject-card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 0px solid var(--pale-green);
+}
+
+.subject-card.open .subject-card-body {
+    max-height: 2000px;
+    border-top-width: 2px;
+}
+
+.subject-card-inner {
+    padding: 20px 22px 24px;
+}
+
+/* ── CURRICULUM SWITCHER ─────────────────────────────────────── */
+.curriculum-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.curr-btn {
+    padding: 6px 14px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border-radius: 99px;
+    border: 2px solid var(--pale-green);
+    background: var(--off-white);
+    color: var(--forest-green);
+    cursor: pointer;
+    transition: all var(--transition);
+    letter-spacing: 0.5px;
+}
+
+.curr-btn:hover {
+    border-color: var(--leaf-green);
+    background: var(--pale-green);
+}
+
+.curr-btn.active {
+    background: var(--primary-green);
+    border-color: var(--primary-green);
+    color: var(--white);
+}
+
+/* Curriculum content panel */
+.curr-panel {
+    display: none;
+}
+
+.curr-panel.active {
+    display: block;
+    animation: fadeInUp 300ms ease-out forwards;
+}
+
+.curr-unit-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--forest-green);
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+/* Topics list */
+.topics-list {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.topics-list li {
+    padding: 7px 0 7px 22px;
+    position: relative;
+    font-size: 0.92rem;
+    color: var(--light-text);
+    line-height: 1.6;
+    border-bottom: 1px solid var(--pale-green);
+    font-family: 'Noto Sans Malayalam', sans-serif;
+}
+
+.topics-list li:last-child {
+    border-bottom: none;
+}
+
+.topics-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 4px;
+    color: var(--leaf-green);
+    font-size: 0.75rem;
+    top: 9px;
+}
+
+/* Insight box */
+.insight-box {
+    background: linear-gradient(135deg, var(--pale-green) 0%, rgba(149,213,178,0.3) 100%);
+    border-left: 4px solid var(--forest-green);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 14px 16px;
+    margin-top: 4px;
+}
+
+.insight-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest-green);
+    margin-bottom: 6px;
+}
+
+.insight-text {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.9rem;
+    color: var(--primary-dark-green);
+    line-height: 1.75;
+}
+
+/* ── GAMES SECTION (inside subject) ─────────────────────────── */
+.games-divider {
+    height: 1px;
+    background: var(--pale-green);
+    margin: 20px 0;
+}
+
+.games-section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest-green);
+    margin-bottom: 12px;
+}
+
+.game-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.game-card {
+    background: var(--off-white);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    border: 1px solid var(--pale-green);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.game-card:hover {
+    border-color: var(--soft-mint);
+    box-shadow: var(--shadow-sm);
+}
+
+.game-card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.game-emoji {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.game-name-ml {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 700;
+    color: var(--primary-dark-green);
+    margin-bottom: 2px;
+}
+
+.game-name-en {
+    font-size: 0.78rem;
+    color: var(--forest-green);
+    font-style: italic;
+}
+
+.game-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.game-meta-chip {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 99px;
+    background: var(--pale-green);
+    color: var(--primary-dark-green);
+    font-family: 'Inter', sans-serif;
+}
+
+.game-how-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--forest-green);
+    margin-bottom: 4px;
+}
+
+.game-how-text {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.88rem;
+    color: var(--light-text);
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.game-outcome {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--forest-green);
+    background: rgba(82,183,136,0.12);
+    padding: 4px 10px;
+    border-radius: 99px;
+    display: inline-block;
+}
+
+/* ── ATTITUDE, PARENTS, TEACHERS PANELS ─────────────────────── */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.info-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    border: 2px solid var(--pale-green);
+    box-shadow: var(--shadow-sm);
+}
+
+.info-card-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.info-card-title {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-dark-green);
+    margin-bottom: 12px;
+}
+
+.info-card-text {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.92rem;
+    color: var(--light-text);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+/* Trait / tip list */
+.trait-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.trait-list li {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.9rem;
+    color: var(--light-text);
+    padding: 8px 12px 8px 36px;
+    position: relative;
+    background: var(--off-white);
+    border-radius: var(--radius-sm);
+    line-height: 1.6;
+}
+
+.trait-list.do-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 10px;
+    color: var(--leaf-green);
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.trait-list.dont-list li::before {
+    content: '✕';
+    position: absolute;
+    left: 10px;
+    color: #e76f51;
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.trait-list.bullet-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 12px;
+    color: var(--forest-green);
+    font-size: 0.8rem;
+    top: 10px;
+}
+
+/* Red flag list */
+.redflag-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.redflag-list li {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.88rem;
+    color: #7f2d14;
+    background: #fef3ee;
+    border-left: 3px solid #e76f51;
+    padding: 8px 12px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    line-height: 1.6;
+}
+
+.redflag-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #e76f51;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+/* ── GAMES TAB (all games collected) ─────────────────────────── */
+.all-games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.all-game-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    border: 2px solid var(--pale-green);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.all-game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.all-game-subject-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--forest-green);
+    background: var(--pale-green);
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-bottom: 12px;
+}
+
+.all-game-title {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-dark-green);
+    margin-bottom: 6px;
+}
+
+.all-game-portion {
+    font-size: 0.82rem;
+    color: var(--forest-green);
+    margin-bottom: 14px;
+    font-weight: 500;
+}
+
+.all-game-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.all-game-how {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.9rem;
+    color: var(--light-text);
+    line-height: 1.75;
+    margin-bottom: 12px;
+    padding: 12px;
+    background: var(--off-white);
+    border-radius: var(--radius-sm);
+}
+
+/* ── FREE CLASS TAB ──────────────────────────────────────────── */
+.free-class-overview {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    border: 2px solid var(--pale-green);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.free-class-overview p {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.97rem;
+    color: var(--light-text);
+    line-height: 1.85;
+}
+
+.free-class-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.free-class-box {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    border: 2px solid var(--pale-green);
+    box-shadow: var(--shadow-sm);
+}
+
+.free-class-box-title {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-dark-green);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-cta {
+    background: linear-gradient(135deg, var(--primary-dark-green), var(--primary-green));
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    text-align: center;
+    color: var(--white);
+}
+
+.contact-cta h3 {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.contact-cta p {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.contact-cta a {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--leaf-green);
+    color: var(--white);
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    transition: all var(--transition);
+}
+
+.contact-cta a:hover {
+    background: var(--soft-mint);
+    color: var(--primary-dark-green);
+    transform: translateY(-2px);
+}
+
+/* ── LOADING STATE ───────────────────────────────────────────── */
+.page-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 16px;
+    color: var(--forest-green);
+}
+
+.page-loading-icon {
+    font-size: 3rem;
+    animation: float 2s ease-in-out infinite;
+}
+
+.page-loading p {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1rem;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+.footer {
+    background: var(--primary-dark-green);
+    color: var(--white);
+    padding: 60px 32px;
+    margin-top: 0;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+.footer-col p,
+.footer-col a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.92rem;
+    line-height: 1.9;
+    transition: color var(--transition);
+}
+
+.footer-col a:hover { color: var(--white); text-decoration: underline; }
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+}
+
+/* ── ANIMATIONS ─────────────────────────────────────────────── */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drift {
+    0%,100% { transform: translate(0,0); }
+    33%      { transform: translate(28px,-28px); }
+    66%      { transform: translate(-18px,18px); }
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+}
+
+@keyframes fadeFlow {
+    0%,100% { opacity: .8; }
+    50%      { opacity: 1; }
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .subjects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .free-class-cols {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header       { padding: 14px 16px; }
+    .nav          { display: none; }
+    .logo-english { font-size: 0.85rem; }
+
+    .class-hero   { margin-top: 70px; padding: 40px 16px 0; }
+    .class-hero-title { font-size: 1.9rem; }
+
+    .class-body   { padding: 28px 16px 60px; }
+
+    .info-grid    { grid-template-columns: 1fr; }
+
+    .all-games-grid { grid-template-columns: 1fr; }
+
+    .subjects-grid  { grid-template-columns: 1fr; }
+
+    .footer-container { grid-template-columns: 1fr; gap: 28px; }
+
+    .class-tabs-bar { padding-bottom: 0; }
+
+    .tab-btn { font-size: 0.85rem; padding: 10px 14px; }
+}
+
+@media (max-width: 480px) {
+    .class-hero-title { font-size: 1.6rem; }
+    .panel-title { font-size: 1.5rem; }
+    .curriculum-tabs { gap: 4px; }
+    .curr-btn { font-size: 0.72rem; padding: 5px 10px; }
+}
+
+/* ── REDUCED MOTION ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
