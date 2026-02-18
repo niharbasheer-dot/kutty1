@@ -1,0 +1,796 @@
+:root {
+    /* Greenery palette */
+    --primary-dark-green: #1b4332;
+    --primary-green: #2d6a4f;
+    --forest-green: #40916c;
+    --leaf-green: #52b788;
+    --soft-mint: #95d5b2;
+    --pale-green: #d8f3dc;
+    --off-white: #f8f9f7;
+    --white: #ffffff;
+    --black: #0b1c0e;
+    
+    /* Text colors */
+    --light-text: #2d5a3d;
+    --accent-green: #40916c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--off-white);
+    color: var(--light-text);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+}
+
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--pale-green);
+    padding: 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(27, 67, 50, 0.08);
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        rgba(45, 106, 79, 0.12) 0%,
+        rgba(45, 106, 79, 0.06) 25%,
+        rgba(82, 183, 136, 0.04) 50%,
+        rgba(45, 106, 79, 0.06) 75%,
+        rgba(45, 106, 79, 0.12) 100%);
+    pointer-events: none;
+    z-index: -1;
+    animation: fadeFlow 4s ease-in-out infinite;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-english {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-dark-green);
+    letter-spacing: 1px;
+}
+
+.logo-malayalam {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--forest-green);
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.nav-item {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: var(--light-text);
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 300ms ease;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--leaf-green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease;
+}
+
+.nav-item:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-item:hover {
+    background: var(--pale-green);
+}
+
+.nav-item.active {
+    background: var(--primary-green);
+    color: var(--white);
+}
+
+.nav-item.active::after {
+    display: none;
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 3;
+}
+
+.hamburger span {
+    width: 24px;
+    height: 3px;
+    background: var(--primary-dark-green);
+    border-radius: 2px;
+    transition: all 300ms ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.15);
+    z-index: 99;
+    border-bottom: 2px solid var(--pale-green);
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu .nav-item {
+    padding: 12px 16px;
+    border-radius: 0;
+    border-left: 4px solid transparent;
+    text-align: left;
+}
+
+.mobile-menu .nav-item:hover {
+    background: var(--pale-green);
+    border-left-color: var(--forest-green);
+}
+
+.mobile-menu .nav-item.active {
+    background: var(--primary-green);
+    color: var(--white);
+    border-left-color: var(--white);
+}
+
+/* HERO SECTION */
+.hero {
+    margin-top: 80px;
+    padding: 80px 32px;
+    background: linear-gradient(135deg, var(--primary-dark-green) 0%, var(--forest-green) 50%, var(--primary-green) 100%);
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: drift 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+.hero::after {
+    content: '🌿 🌱 🌾 🌳';
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    font-size: 4rem;
+    opacity: 0.15;
+    z-index: 1;
+    animation: float 6s ease-in-out infinite;
+    letter-spacing: 15px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.2rem;
+    margin-bottom: 16px;
+    font-weight: 800;
+    opacity: 0;
+    animation: slideInDown 700ms ease-out forwards;
+}
+
+.hero-ml {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    opacity: 0;
+    animation: slideInDown 700ms ease-out 150ms forwards;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.95);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    opacity: 0;
+    animation: slideInDown 700ms ease-out 300ms forwards;
+}
+
+/* MAIN CONTAINER */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 32px;
+}
+
+.section-title {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 2.2rem;
+    color: var(--primary-dark-green);
+    margin-bottom: 40px;
+    font-weight: 800;
+    text-align: center;
+    opacity: 0;
+    animation: slideInDown 700ms ease-out forwards;
+}
+
+/* CATEGORY FILTER */
+.category-filter {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeIn 700ms ease-out 200ms forwards;
+}
+
+.category-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--pale-green);
+    background: var(--white);
+    color: var(--primary-dark-green);
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-weight: 600;
+    transition: all 300ms ease;
+    font-size: 0.95rem;
+}
+
+.category-btn:hover {
+    background: var(--pale-green);
+    border-color: var(--forest-green);
+}
+
+.category-btn.active {
+    background: var(--primary-green);
+    color: var(--white);
+    border-color: var(--primary-green);
+}
+
+/* PLANTS GRID */
+.plants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.plant-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.08);
+    transition: all 400ms ease;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 700ms ease-out forwards;
+    border-top: 4px solid var(--leaf-green);
+}
+
+.plant-card:nth-child(1) { animation-delay: 100ms; }
+.plant-card:nth-child(2) { animation-delay: 150ms; }
+.plant-card:nth-child(3) { animation-delay: 200ms; }
+.plant-card:nth-child(4) { animation-delay: 250ms; }
+.plant-card:nth-child(5) { animation-delay: 300ms; }
+.plant-card:nth-child(6) { animation-delay: 350ms; }
+
+.plant-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(27, 67, 50, 0.15);
+}
+
+.plant-images {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    height: 250px;
+    overflow: hidden;
+    background: var(--pale-green);
+}
+
+.plant-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 300ms ease;
+}
+
+.plant-card:hover .plant-image {
+    transform: scale(1.05);
+}
+
+.plant-info {
+    padding: 24px;
+}
+
+.plant-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.plant-emoji {
+    font-size: 1.5rem;
+}
+
+.plant-name {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.4rem;
+    color: var(--primary-dark-green);
+    font-weight: 700;
+}
+
+.plant-scientific {
+    font-size: 0.9rem;
+    color: var(--accent-green);
+    font-style: italic;
+    margin-bottom: 12px;
+}
+
+.plant-description {
+    color: var(--light-text);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* CARE DETAILS */
+.care-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.care-item {
+    background: var(--pale-green);
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid var(--forest-green);
+}
+
+.care-label {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.8rem;
+    color: var(--primary-dark-green);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.care-value {
+    font-size: 0.9rem;
+    color: var(--primary-dark-green);
+    font-weight: 600;
+}
+
+.plant-footer {
+    padding-top: 16px;
+    border-top: 1px solid var(--pale-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.harvest-time {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.85rem;
+    color: var(--forest-green);
+    font-weight: 600;
+}
+
+.read-more {
+    background: var(--leaf-green);
+    color: var(--white);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 300ms ease;
+}
+
+.read-more:hover {
+    background: var(--forest-green);
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 32px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--pale-green);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease;
+}
+
+.modal-close:hover {
+    background: var(--forest-green);
+    color: white;
+}
+
+.modal-title {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.8rem;
+    color: var(--primary-dark-green);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.modal-scientific {
+    font-size: 0.95rem;
+    color: var(--accent-green);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.modal-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.modal-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--pale-green);
+}
+
+.modal-section {
+    margin-bottom: 24px;
+}
+
+.modal-section-title {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.1rem;
+    color: var(--primary-dark-green);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.modal-section-content {
+    color: var(--light-text);
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+/* FOOTER */
+.footer {
+    background: var(--primary-dark-green);
+    color: var(--white);
+    padding: 60px 32px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.footer-col p, .footer-col a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    transition: all 300ms ease;
+}
+
+.footer-col a:hover {
+    color: var(--white);
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+}
+
+/* ANIMATIONS */
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes drift {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    33% {
+        transform: translate(30px, -30px);
+    }
+    66% {
+        transform: translate(-20px, 20px);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes fadeFlow {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .plants-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 14px 16px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .logo-english {
+        font-size: 0.85rem;
+    }
+
+    .hero {
+        margin-top: 70px;
+        padding: 40px 16px;
+        min-height: 400px;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-ml {
+        font-size: 1.1rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero::after {
+        font-size: 2.5rem;
+        right: 20px;
+        letter-spacing: 8px;
+    }
+
+    .container {
+        padding: 40px 16px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .plants-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .plant-card {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .care-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-filter {
+        gap: 8px;
+    }
+
+    .category-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+
+    .modal-content {
+        padding: 24px;
+    }
+
+    .modal-title {
+        font-size: 1.4rem;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+    }
+}
